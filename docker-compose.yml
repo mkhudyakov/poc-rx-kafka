@@ -1,0 +1,65 @@
+version: '2'
+
+networks:
+  eis-net:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    networks:
+      - eis-net
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka-1:
+    image: wurstmeister/kafka
+    networks:
+      - eis-net
+    ports:
+      - "9095:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.88.154
+      KAFKA_ADVERTISED_PORT: 9095
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LOG_DIRS: /kafka/logs
+      KAFKA_BROKER_ID: 500
+      KAFKA_offsets_topic_replication_factor: 3
+    depends_on:
+      - zookeeper
+  kafka-2:
+    image: wurstmeister/kafka
+    networks:
+      - eis-net
+    ports:
+      - "9096:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.88.154
+      KAFKA_ADVERTISED_PORT: 9096
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LOG_DIRS: /kafka/logs
+      KAFKA_BROKER_ID: 501
+      KAFKA_offsets_topic_replication_factor: 3
+    depends_on:
+      - zookeeper
+  kafka-3:
+    image: wurstmeister/kafka
+    networks:
+      - eis-net
+    ports:
+      - "9097:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.88.154
+      KAFKA_ADVERTISED_PORT: 9097
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LOG_DIRS: /kafka/logs
+      KAFKA_BROKER_ID: 502
+      KAFKA_offsets_topic_replication_factor: 3
+    depends_on:
+      - zookeeper
+  cassandra:
+    image: 'cassandra:latest'
+    ports:
+      - '9042:9042'
+      - '9160:9160'
