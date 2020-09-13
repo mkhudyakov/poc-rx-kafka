@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.poc.rx.notification.model";
+option java_outer_classname = "NotificationProtos";
+
+message EmailSendRequest {
+    string requestId = 1;
+    string templateId = 2;
+    string to = 3;
+    map<string, string> parameters = 4;
+}

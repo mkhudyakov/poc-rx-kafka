@@ -1,7 +1,7 @@
 package com.poc.rx.core.service.user.impl;
 
-import com.poc.rx.core.model.UserRegistrationRequest;
 import com.poc.rx.core.service.user.UserRegistrationService;
+import com.poc.rx.signup.model.UserRegistrationRequest;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.utils.Bytes;
 import org.slf4j.Logger;

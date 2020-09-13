@@ -4,24 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.poc.rx</groupId>
-        <artifactId>poc-rx-signup</artifactId>
+        <artifactId>poc-rx-notification</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>poc-rx-signup-core</artifactId>
+    <artifactId>poc-rx-notification-core</artifactId>
 
     <dependencies>
 
         <dependency>
             <groupId>com.poc.rx</groupId>
-            <artifactId>poc-rx-notification-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <classifier>client</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>com.poc.rx</groupId>
-            <artifactId>poc-rx-signup-data</artifactId>
+            <artifactId>poc-rx-notification-data</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -101,7 +94,7 @@
                         <configuration>
                             <classifier>client</classifier>
                             <includes>
-                                <include>com/poc/rx/signup/model/*</include>
+                                <include>com/poc/rx/notification/model/*</include>
                             </includes>
                         </configuration>
                     </execution>

@@ -4,19 +4,20 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>poc-rx-rest-api</module>
-        <module>poc-rx-rest-core</module>
+        <module>poc-rx-notification-boot</module>
+        <module>poc-rx-notification-core</module>
+        <module>poc-rx-notification-data</module>
     </modules>
 
     <groupId>com.poc.rx</groupId>
-    <artifactId>poc-rx-rest</artifactId>
+    <artifactId>poc-rx-notification</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.3.RELEASE</spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -34,17 +35,26 @@
                 <version>${spring-boot.version}</version>
             </dependency>
 
+            <!-- Camel -->
             <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>2.2.3.RELEASE</version>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring-boot-starter</artifactId>
+                <version>2.25.2</version>
             </dependency>
-
-            <!-- Security -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>${spring-boot.version}</version>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-kafka</artifactId>
+                <version>2.25.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.1</version>
             </dependency>
 
             <dependency>
@@ -72,12 +82,11 @@
                 <artifactId>protobuf-java</artifactId>
                 <version>3.1.0</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <finalName>poc-rx-rest-api</finalName>
+        <finalName>poc-rx-notification-boot</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -106,5 +115,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>
