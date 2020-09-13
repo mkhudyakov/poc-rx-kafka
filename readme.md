@@ -1,3 +1,5 @@
+![Reactive Architecture](architecture.png)
+
 ### 1. Install build tools
 ```
 brew install protobuf
