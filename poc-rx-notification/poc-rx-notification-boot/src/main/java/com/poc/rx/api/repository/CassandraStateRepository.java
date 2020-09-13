@@ -13,23 +13,21 @@ public class CassandraStateRepository extends ServiceSupport implements StateRep
 
     private final OffsetStorageRepository offsetStorageRepository;
     private final String groupId;
-    private final String clientId;
 
-    public CassandraStateRepository(OffsetStorageRepository offsetStorageRepository, String groupId, String clientId) {
+    public CassandraStateRepository(OffsetStorageRepository offsetStorageRepository, String groupId) {
         this.offsetStorageRepository = offsetStorageRepository;
         this.groupId = groupId;
-        this.clientId = clientId;
     }
 
     @Override
     public void setState(String key, String value) {
-        OffsetStorage offset = new OffsetStorage(clientId, groupId, key, value);
+        OffsetStorage offset = new OffsetStorage(groupId, key, value);
         offsetStorageRepository.save(offset);
     }
 
     @Override
     public String getState(String key) {
-        return offsetStorageRepository.findOffset(groupId, clientId)
+        return offsetStorageRepository.findOffset(groupId, key)
                 .map(OffsetStorage::getOffset).orElse(null);
     }
 

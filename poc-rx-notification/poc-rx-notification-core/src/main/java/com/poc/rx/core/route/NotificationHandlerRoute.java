@@ -13,12 +13,15 @@ public class NotificationHandlerRoute extends RouteBuilder {
     @Value("${spring.broker.kafka.address}")
     private String kafkaAddress;
 
+    @Value("${kafka.clientId}")
+    private String clientId;
+
     @Override
     public void configure() throws Exception {
         final String kafkaBaseUrl = String.format("kafka:%s?brokers=%s", kafkaAddress, kafkaAddress);
 
-        from(String.format("%s&topic=req-notification&groupId=defaultGroup&clientId=notificationClient" +
-                "&autoCommitEnable=false&allowManualCommit=true&offsetRepository=#offsetStore", kafkaBaseUrl))
+        from(String.format("%s&topic=req-notification&groupId=defaultGroup&clientId=%s" +
+                "&autoCommitEnable=false&allowManualCommit=true&offsetRepository=#offsetStore", kafkaBaseUrl, clientId))
             .autoStartup(true)
             /* Email Send Processor */
             .process(exchange -> {

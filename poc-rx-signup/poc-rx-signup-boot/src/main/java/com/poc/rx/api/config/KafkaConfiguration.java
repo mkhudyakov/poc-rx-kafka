@@ -16,15 +16,12 @@ public class KafkaConfiguration {
     @Value("${kafka.groupId}")
     private String kafkaGroupId;
 
-    @Value("${kafka.clientId}")
-    private String kafkaClientId;
-
     @Autowired
     private OffsetStorageRepository offsetStorageRepository;
 
     @Bean(name = "offsetStore", initMethod = "start", destroyMethod = "stop")
     public CassandraStateRepository cassandraStore() {
-        return new CassandraStateRepository(offsetStorageRepository, kafkaGroupId, kafkaClientId);
+        return new CassandraStateRepository(offsetStorageRepository, kafkaGroupId);
     }
 
 /*    @Bean(name = "offsetStore", initMethod = "start", destroyMethod = "stop")
